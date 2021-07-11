@@ -5,7 +5,6 @@
 #ifndef SYMBOLICMODELCHECKING2_LEASTFIXPOINT_H
 #define SYMBOLICMODELCHECKING2_LEASTFIXPOINT_H
 
-//#include "cudd.h"
 class DdNode;
 
 DdNode* leastFixPoint(DdNode* (*tau)(DdNode*));

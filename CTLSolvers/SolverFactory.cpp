@@ -7,6 +7,7 @@
 #include "AXSolver.h"
 #include "AndSolver.h"
 #include "VarSolvers.h"
+#include "EUSolver.h"
 
 CTLSolver *getSolverForType(NodeType type) {
     CTLSolver* solver;
@@ -18,6 +19,10 @@ CTLSolver *getSolverForType(NodeType type) {
         case AX:
             solver = new AXSolver();
             break;
+
+//        case EU:
+//            solver = new EUSolver();
+//            break;
 
         case AND:
             solver = new AndSolver();

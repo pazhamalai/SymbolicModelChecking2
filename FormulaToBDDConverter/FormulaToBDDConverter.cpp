@@ -4,6 +4,7 @@
 
 #include "FormulaToBDDConverter.h"
 #include "../CTLSolvers/SolverFactory.h"
+#include "cstdlib"
 
 DdNode *FormulaToBDDConverter::convertFormula(struct Formula *formula, int transitionLevel) {
     CTLSolver* solver = getSolverForType(formula->type);

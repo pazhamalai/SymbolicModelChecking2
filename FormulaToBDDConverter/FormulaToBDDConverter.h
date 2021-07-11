@@ -6,7 +6,6 @@
 #define SYMBOLICMODELCHECKING2_FORMULATOBDDCONVERTER_H
 
 #include "MCIP.h"
-#include "cstdlib"
 
 class DdNode;
 

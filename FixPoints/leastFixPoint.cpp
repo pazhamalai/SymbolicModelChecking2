@@ -3,8 +3,9 @@
 //
 
 #include "leastFixPoint.h"
-//#include "cudd.h"
-//#include "../Globals/GlobalStorage.h"
+#include "iostream"
+#include "cudd.h"
+#include "../Globals/GlobalStorage.h"
 
 DdNode* leastFixPoint(DdNode* (*tau)(DdNode*)) {
 //    DdManager* manager = GlobalStorage::getInstance()->ddManager;
