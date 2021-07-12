@@ -51,5 +51,6 @@ DdNode* EU_tau(DdNode* Z) {
 DdNode *EUSolver::solveCTL(Formula *formula, int transitionLevel, FormulaToBDDConverter *converter) {
     EU_F1_BDD = converter->convertFormula(formula->firstArgument, transitionLevel);
     EU_F2_BDD = converter->convertFormula(formula->secondArgument, transitionLevel);
+    EU_transitionLevel = transitionLevel;
     return leastFixPoint(EU_tau);
 }

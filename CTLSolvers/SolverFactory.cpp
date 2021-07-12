@@ -6,6 +6,8 @@
 #include "EXSolver.h"
 #include "AXSolver.h"
 #include "AndSolver.h"
+#include "OrSolver.h"
+#include "NotSolver.h"
 #include "VarSolvers.h"
 #include "EUSolver.h"
 
@@ -20,12 +22,20 @@ CTLSolver *getSolverForType(NodeType type) {
             solver = new AXSolver();
             break;
 
-//        case EU:
-//            solver = new EUSolver();
-//            break;
+        case EU:
+            solver = new EUSolver();
+            break;
 
         case AND:
             solver = new AndSolver();
+            break;
+
+        case OR:
+            solver = new OrSolver();
+            break;
+
+        case NOT:
+            solver = new NotSolver();
             break;
 
         case VAR:

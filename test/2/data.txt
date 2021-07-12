@@ -1,0 +1,10 @@
+x, y, z
+(and (or (not (z)) (_z)) (or (not (_z)) (z)))
+(z)
+(EU (not (z)) (z))
+
+
+# This Kripke structure consists of 8 states.
+# The states with z = 0, are connected with each other.
+# The states with z = 1, are connected with each other.
+# The (EU (not (z)) (z)) should be true for all states with z = 1.
