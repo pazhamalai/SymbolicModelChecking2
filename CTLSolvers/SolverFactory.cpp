@@ -11,7 +11,13 @@
 #include "AUSolver.h"
 
 #include "EFSolver.h"
+#include "AFSolver.h"
+
 #include "EGSolver.h"
+#include "AGSolver.h"
+
+#include "ERSolver.h"
+#include "ARSolver.h"
 
 #include "AndSolver.h"
 #include "OrSolver.h"
@@ -25,7 +31,6 @@ CTLSolver *getSolverForType(NodeType type) {
         case EX:
             solver = new EXSolver();
             break;
-
         case AX:
             solver = new AXSolver();
             break;
@@ -33,7 +38,6 @@ CTLSolver *getSolverForType(NodeType type) {
         case EU:
             solver = new EUSolver();
             break;
-
         case AU:
             solver = new AUSolver();
             break;
@@ -41,9 +45,22 @@ CTLSolver *getSolverForType(NodeType type) {
         case EF:
             solver = new EFSolver();
             break;
+        case AF:
+            solver = new AFSolver();
+            break;
 
         case EG:
             solver = new EGSolver();
+            break;
+        case AG:
+            solver = new AGSolver();
+            break;
+
+        case ER:
+            solver = new ARSolver();
+            break;
+        case AR:
+            solver = new ERSolver();
             break;
 
         case AND:
