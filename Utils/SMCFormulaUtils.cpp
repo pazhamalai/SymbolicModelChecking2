@@ -2,7 +2,7 @@
 // Created by pazhamalai on 09/07/21.
 //
 
-#include "FormulaUtils.h"
+#include "SMCFormulaUtils.h"
 
 void changeVariables(Formula* formula, int transitionLevel) {
     if (formula == nullptr)

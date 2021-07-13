@@ -1,6 +1,6 @@
 x, y, z
 (and (or (not (z)) (_z)) (or (not (_z)) (z)))
-(z)
+(FALSE)
 (AU (not (z)) (z))
 
 

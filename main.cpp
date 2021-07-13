@@ -47,5 +47,9 @@ int main() {
     initInput();
     DdNode* ctlBDD = convertCTLFormula();
     dumpBDDasDot(ctlBDD, DOT_FILE_PATH);
+
+    // EF f can be computed as E (true U f)
+    // AF can be computed as E Not.F, which is, E
+    // AR f can be computed as Not. E ( Nf1 U Nf2)
     return 0;
 }

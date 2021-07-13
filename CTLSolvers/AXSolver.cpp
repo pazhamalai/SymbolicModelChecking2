@@ -4,7 +4,7 @@
 
 #include "AXSolver.h"
 #include "../FormulaToBDDConverter/TransitionRelationToBDDConverter.h"
-#include "../Utils/FormulaUtils.h"
+#include "../Utils/SMCFormulaUtils.h"
 
 DdNode *AXSolver::solveCTL(Formula *formula, int transitionLevel, FormulaToBDDConverter *converter) {
     // BDD for T(s, s')
