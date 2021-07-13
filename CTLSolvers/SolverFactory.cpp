@@ -11,6 +11,8 @@
 #include "VarSolvers.h"
 #include "EUSolver.h"
 #include "AUSolver.h"
+#include "EFSolver.h"
+#include "BooleanSolver.h"
 
 CTLSolver *getSolverForType(NodeType type) {
     CTLSolver* solver;
@@ -31,6 +33,10 @@ CTLSolver *getSolverForType(NodeType type) {
             solver = new AUSolver();
             break;
 
+        case EF:
+            solver = new EFSolver();
+            break;
+
         case AND:
             solver = new AndSolver();
             break;
@@ -45,6 +51,11 @@ CTLSolver *getSolverForType(NodeType type) {
 
         case VAR:
             solver = new VarSolvers();
+            break;
+
+        case BOOLEAN_TRUE:
+        case BOOLEAN_FALSE:
+            solver = new BooleanSolver();
             break;
 
         default:
