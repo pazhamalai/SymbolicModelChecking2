@@ -10,6 +10,7 @@
 #include "NotSolver.h"
 #include "VarSolvers.h"
 #include "EUSolver.h"
+#include "AUSolver.h"
 
 CTLSolver *getSolverForType(NodeType type) {
     CTLSolver* solver;
@@ -24,6 +25,10 @@ CTLSolver *getSolverForType(NodeType type) {
 
         case EU:
             solver = new EUSolver();
+            break;
+
+        case AU:
+            solver = new AUSolver();
             break;
 
         case AND:
