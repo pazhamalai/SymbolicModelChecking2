@@ -1,0 +1,12 @@
+//
+// Created by pazhamalai on 13/07/21.
+//
+
+#ifndef SYMBOLICMODELCHECKING2_GREATESTFIXPOINT_H
+#define SYMBOLICMODELCHECKING2_GREATESTFIXPOINT_H
+
+class DdNode;
+
+DdNode* greatestFixPoint(DdNode* (*tau)(DdNode*));
+
+#endif //SYMBOLICMODELCHECKING2_GREATESTFIXPOINT_H

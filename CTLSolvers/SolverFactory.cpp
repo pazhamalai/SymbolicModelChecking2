@@ -3,15 +3,20 @@
 //
 
 #include "SolverFactory.h"
+
 #include "EXSolver.h"
 #include "AXSolver.h"
+
+#include "EUSolver.h"
+#include "AUSolver.h"
+
+#include "EFSolver.h"
+#include "EGSolver.h"
+
 #include "AndSolver.h"
 #include "OrSolver.h"
 #include "NotSolver.h"
 #include "VarSolvers.h"
-#include "EUSolver.h"
-#include "AUSolver.h"
-#include "EFSolver.h"
 #include "BooleanSolver.h"
 
 CTLSolver *getSolverForType(NodeType type) {
@@ -35,6 +40,10 @@ CTLSolver *getSolverForType(NodeType type) {
 
         case EF:
             solver = new EFSolver();
+            break;
+
+        case EG:
+            solver = new EGSolver();
             break;
 
         case AND:
