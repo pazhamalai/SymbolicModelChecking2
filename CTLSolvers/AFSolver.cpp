@@ -3,10 +3,8 @@
 //
 
 #include "AFSolver.h"
-
-extern "C" {
 #include "FormulaUtils.h"
-}
+
 // AF f solved by (Not (EG (Not f)))
 DdNode *AFSolver::solveCTL(Formula *formula, int transitionLevel, FormulaToBDDConverter *converter) {
     formula->type = EG;

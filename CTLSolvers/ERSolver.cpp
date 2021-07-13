@@ -3,10 +3,7 @@
 //
 
 #include "ERSolver.h"
-
-extern "C" {
 #include "FormulaUtils.h"
-}
 
 DdNode* ERSolver::solveCTL(Formula *formula, int transitionLevel, FormulaToBDDConverter *converter) {
     formula->type = AU;

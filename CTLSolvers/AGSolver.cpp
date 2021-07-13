@@ -3,10 +3,7 @@
 //
 
 #include "AGSolver.h"
-
-extern "C" {
 #include "FormulaUtils.h"
-}
 
 DdNode *AGSolver::solveCTL(Formula *formula, int transitionLevel, FormulaToBDDConverter *converter) {
     formula->type = EF;

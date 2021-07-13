@@ -3,10 +3,7 @@
 //
 
 #include "ARSolver.h"
-
-extern "C" {
 #include "FormulaUtils.h"
-}
 
 DdNode *ARSolver::solveCTL(Formula *formula, int transitionLevel, FormulaToBDDConverter *converter) {
     formula->type = EU;
