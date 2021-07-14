@@ -1,8 +1,8 @@
 x, y, z
 (and (or (not (z)) (_z)) (or (not (_z)) (z)))
 (FALSE)
-(EG (z))
-
+(AU (not (z)) (z))
+(z)
 
 # This Kripke structure consists of 8 states.
 # The states with z = 0, are connected with each other.

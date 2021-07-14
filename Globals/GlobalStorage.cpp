@@ -21,6 +21,8 @@ void GlobalStorage::setInputInfo(InputInfo *info) {
     CTLFormula = info->ctlFormula;
     numberOfVariables = info->numberOfVariables;
     variables = info->variables;
+    fairnessConstraints = info->fairnessConstraints;
+    numberOfFairnessConstraints = info->numberOfFairnessConstraints;
     currentTransitionLevel = 0;
 }
 

@@ -25,9 +25,11 @@ public:
     Formula* transitionFormula;
     Formula* initialStatesFormula;
     Formula* CTLFormula;
+    Formula** fairnessConstraints;
     char** variables;
     int numberOfVariables;
     int currentTransitionLevel;
+    int numberOfFairnessConstraints;
 
     /* Static access method. */
     static GlobalStorage* getInstance();
