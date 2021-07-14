@@ -3,21 +3,12 @@
 //
 
 #include "EFSolver.h"
-#include "cstdlib"
-
-Formula* getTrueFormulaNode() {
-    auto* trueNode = (struct Formula*) malloc(sizeof(struct Formula));
-    trueNode->type = BOOLEAN_TRUE;
-    trueNode->firstArgument = nullptr;
-    trueNode->secondArgument = nullptr;
-    trueNode->variableValue = -1;
-    return trueNode;
-}
+#include "FormulaUtils.h"
 
 // EF f Solved by E(true U f)
 DdNode *EFSolver::solveCTL(Formula *formula, int transitionLevel, FormulaToBDDConverter *converter) {
     formula->secondArgument = formula->firstArgument;
-    formula->firstArgument = getTrueFormulaNode();
+    formula->firstArgument = Formula_True();
     formula->type = EU;
     return converter->convertFormula(formula, transitionLevel);
 }
