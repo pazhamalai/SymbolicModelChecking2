@@ -5,6 +5,7 @@
 #include "BDDUtils.h"
 #include "../Globals/GlobalStorage.h"
 #include "cudd.h"
+#include "cstdlib"
 
 DdNode* moveBDDToNextState(DdNode* bdd, int currentTransitionLevel) {
     int numberOfVariables = GlobalStorage::getInstance()->numberOfVariables;
@@ -34,4 +35,16 @@ DdNode* createCubeVariablesBDD(int transitionLevel) {
 
     Cudd_Ref(nextVariablesBDD);
     return nextVariablesBDD;
+}
+
+DdNode** getVariablesOfLevel(int transitionLevel) {
+    DdManager* manager = GlobalStorage::getInstance()->ddManager;
+    int numberOfVariables = GlobalStorage::getInstance()->numberOfVariables;
+
+    auto** variables = (DdNode**) malloc((sizeof(DdNode*)) * numberOfVariables);
+    for (int i = 0; i < numberOfVariables; ++i) {
+        variables[i] = Cudd_bddIthVar(manager, (transitionLevel * numberOfVariables) + (i % numberOfVariables));
+    }
+
+    return variables;
 }

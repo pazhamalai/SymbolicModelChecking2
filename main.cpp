@@ -47,5 +47,6 @@ int main() {
     initInput();
     DdNode* ctlBDD = convertCTLFormula();
     dumpBDDasDot(ctlBDD, DOT_FILE_PATH);
+    Cudd_Quit(GlobalStorage::getInstance()->ddManager);
     return 0;
 }

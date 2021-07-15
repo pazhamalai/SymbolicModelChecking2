@@ -13,4 +13,6 @@ DdNode* moveBDDToNextState(DdNode* bdd, int currentTransitionLevel);
 // Useful for functions Cudd_bddSwapVariables
 DdNode* createCubeVariablesBDD(int transitionLevel);
 
+DdNode** getVariablesOfLevel(int transitionLevel);
+
 #endif //SYMBOLICMODELCHECKING2_BDDUTILS_H

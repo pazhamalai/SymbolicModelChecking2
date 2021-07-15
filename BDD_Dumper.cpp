@@ -22,5 +22,4 @@ void dumpBDDasDot(DdNode* ctlBDD, const char* DotFilePath) {
     sprintf(fileName, "%s", DotFilePath);
     printf("%s", fileName);
     write_dd(GlobalStorage::getInstance()->ddManager, ctlBDD, fileName);
-    Cudd_Quit(GlobalStorage::getInstance()->ddManager);
 }

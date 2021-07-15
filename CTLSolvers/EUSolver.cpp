@@ -7,6 +7,7 @@
 #include "../FormulaToBDDConverter/TransitionRelationToBDDConverter.h"
 #include "../Utils/BDDUtils.h"
 #include "FormulaUtils.h"
+#include "../BDD_Dumper.h"
 
 // The variables are declared here so that the tau function will have only one argument Z.
 // And leastFixPoint can be computed with this format in a single place.
@@ -14,6 +15,13 @@ DdNode* EU_F1_BDD;
 DdNode* EU_F2_BDD;
 int EU_transitionLevel;
 FormulaToBDDConverter* EU_fBDD_Converter;
+
+EUWitnessGenerator* EU_WitnessGenerator;
+
+const char* Input1 = "/home/pazhamalai/CLionProjects/SymbolicModelChecking2/test/3/graph1.dot";
+const char* Input2 = "/home/pazhamalai/CLionProjects/SymbolicModelChecking2/test/3/graph2.dot";
+const char* Input3 = "/home/pazhamalai/CLionProjects/SymbolicModelChecking2/test/3/graph3.dot";
+int tauRuns = 0;
 
 DdNode* EU_getEX(DdNode* Z) {
     DdManager* manager = GlobalStorage::getInstance()->ddManager;
@@ -33,6 +41,16 @@ DdNode* EU_getEX(DdNode* Z) {
     return EXResult;
 }
 
+const char* getDirectory() {
+    if (tauRuns == 1)
+        return Input1;
+
+    if (tauRuns == 2)
+        return Input2;
+
+    return Input3;
+}
+
 DdNode* EU_tau(DdNode* Z) {
     DdManager* manager = GlobalStorage::getInstance()->ddManager;
 
@@ -45,6 +63,9 @@ DdNode* EU_tau(DdNode* Z) {
     // f2 \/ (f1 ^ EX(Z))
     DdNode* EUResult = Cudd_bddOr(manager, interNode1, EU_F2_BDD);
     Cudd_Ref(EUResult);
+    EU_WitnessGenerator->addTau(EUResult);
+    ++tauRuns;
+    dumpBDDasDot(EUResult, getDirectory());
     return EUResult;
 
 }
@@ -52,7 +73,12 @@ DdNode* EU_tau(DdNode* Z) {
 DdNode *EUSolver::solveCTL(Formula *formula, int transitionLevel, FormulaToBDDConverter *converter) {
     EU_F1_BDD = converter->convertFormula(formula->firstArgument, transitionLevel);
     EU_F2_BDD = converter->convertFormula(formula->secondArgument, transitionLevel);
+
     EU_transitionLevel = transitionLevel;
+    EU_WitnessGenerator = &witnessGenerator;
+    EU_WitnessGenerator->init();
+    EU_WitnessGenerator->setF1BDD(EU_F1_BDD);
+    EU_WitnessGenerator->setF2BDD(EU_F2_BDD);
 
     // If fairness conditions are present, the second argument becomes
     // f2 ^ fair
@@ -65,5 +91,14 @@ DdNode *EUSolver::solveCTL(Formula *formula, int transitionLevel, FormulaToBDDCo
         EU_F2_BDD = Cudd_bddAnd(manager, EU_F2_BDD, allFairStates);
     }
 
-    return leastFixPoint(EU_tau);
+    DdNode* result =  leastFixPoint(EU_tau);
+    Cudd_Ref(result);
+
+    //Witness Generation
+    if (numberOfFairnessConstraints == 0) {
+        EU_WitnessGenerator = &witnessGenerator;
+        EU_WitnessGenerator->forwardSymbolicSimulation();
+    }
+
+    return result;
 }
