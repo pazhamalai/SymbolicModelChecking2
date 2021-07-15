@@ -1,7 +1,7 @@
 x, y, z
 (and (or (not (z)) (_z)) (or (not (_z)) (z)))
 (FALSE)
-(EX (EX (z)))
+(EU (not (z)) (z))
 (not (z))
 
 # This Kripke structure consists of 8 states.

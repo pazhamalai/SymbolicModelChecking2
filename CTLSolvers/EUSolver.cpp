@@ -6,6 +6,7 @@
 #include "../FixPoints/leastFixPoint.h"
 #include "../FormulaToBDDConverter/TransitionRelationToBDDConverter.h"
 #include "../Utils/BDDUtils.h"
+#include "FormulaUtils.h"
 
 // The variables are declared here so that the tau function will have only one argument Z.
 // And leastFixPoint can be computed with this format in a single place.
@@ -52,5 +53,17 @@ DdNode *EUSolver::solveCTL(Formula *formula, int transitionLevel, FormulaToBDDCo
     EU_F1_BDD = converter->convertFormula(formula->firstArgument, transitionLevel);
     EU_F2_BDD = converter->convertFormula(formula->secondArgument, transitionLevel);
     EU_transitionLevel = transitionLevel;
+
+    // If fairness conditions are present, the second argument becomes
+    // f2 ^ fair
+    DdManager* manager = GlobalStorage::getInstance()->ddManager;
+    int numberOfFairnessConstraints = GlobalStorage::getInstance()->numberOfFairnessConstraints;
+    if (numberOfFairnessConstraints > 0) {
+        DdNode* allFairStates = converter->convertFormula(Formula_EG(Formula_True()), transitionLevel);
+        Cudd_Ref(allFairStates);
+
+        EU_F2_BDD = Cudd_bddAnd(manager, EU_F2_BDD, allFairStates);
+    }
+
     return leastFixPoint(EU_tau);
 }
