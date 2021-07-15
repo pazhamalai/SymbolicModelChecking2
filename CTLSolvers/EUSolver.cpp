@@ -18,11 +18,6 @@ FormulaToBDDConverter* EU_fBDD_Converter;
 
 EUWitnessGenerator* EU_WitnessGenerator;
 
-const char* Input1 = "/home/pazhamalai/CLionProjects/SymbolicModelChecking2/test/3/graph1.dot";
-const char* Input2 = "/home/pazhamalai/CLionProjects/SymbolicModelChecking2/test/3/graph2.dot";
-const char* Input3 = "/home/pazhamalai/CLionProjects/SymbolicModelChecking2/test/3/graph3.dot";
-int tauRuns = 0;
-
 DdNode* EU_getEX(DdNode* Z) {
     DdManager* manager = GlobalStorage::getInstance()->ddManager;
 
@@ -41,16 +36,6 @@ DdNode* EU_getEX(DdNode* Z) {
     return EXResult;
 }
 
-const char* getDirectory() {
-    if (tauRuns == 1)
-        return Input1;
-
-    if (tauRuns == 2)
-        return Input2;
-
-    return Input3;
-}
-
 DdNode* EU_tau(DdNode* Z) {
     DdManager* manager = GlobalStorage::getInstance()->ddManager;
 
@@ -64,8 +49,6 @@ DdNode* EU_tau(DdNode* Z) {
     DdNode* EUResult = Cudd_bddOr(manager, interNode1, EU_F2_BDD);
     Cudd_Ref(EUResult);
     EU_WitnessGenerator->addTau(EUResult);
-    ++tauRuns;
-    dumpBDDasDot(EUResult, getDirectory());
     return EUResult;
 
 }
