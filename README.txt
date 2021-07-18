@@ -68,7 +68,7 @@ INPUT FILE FORMAT:
             You can find the supported operator types in enum NodeType. This enum can be found in library
             ModelCheckingInputParser, in file MCIP.h
 
-            https://github.com/pazhamalai/ModelCheckingInputParser
+            https://github.com/pazhamalai/ModelCheckingInputParser/tree/0c23314793eca1df69662308787597d353d3e9a0
 
 
     Transition Relation:
@@ -161,7 +161,7 @@ COMPILATION AND RUNNING:
           This is a library i wrote, for reading input file in the input format above mentioned. This can be found
           in the following github link.
 
-          https://github.com/pazhamalai/ModelCheckingInputParser
+          https://github.com/pazhamalai/ModelCheckingInputParser/tree/0c23314793eca1df69662308787597d353d3e9a0
 
           After downloading this you have to build this library. For this you can use an IDE such as
           Visual studio code or CLion. In visual studio code, you may need to install cmake plugin.
