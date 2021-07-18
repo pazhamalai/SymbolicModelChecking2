@@ -6,7 +6,7 @@
 #include "BDD_Dumper.h"
 #include "cstring"
 
-const char* INPUT_DIRECTORY = "/home/pazhamalai/CLionProjects/SymbolicModelChecking2/test/2";
+const char* INPUT_DIRECTORY = "/home/pazhamalai/CLionProjects/SymbolicModelChecking2/test/microwaveOven";
 char INPUT_FILE_PATH[255];
 char DOT_FILE_PATH[255];
 
@@ -42,10 +42,24 @@ DdNode* convertCTLFormula() {
     return ctlBDD;
 }
 
+void checkCTLHolds(DdNode* ctlBDD) {
+    FormulaToBDDConverter converter;
+    Formula* initialStates = GlobalStorage::getInstance()->initialStatesFormula;
+    DdNode* initialBDD = converter.convertFormula(initialStates, 0);
+    DdManager* manager = GlobalStorage::getInstance()->ddManager;
+    DdNode* result = Cudd_bddAnd(manager, ctlBDD, initialBDD);
+    if (result == Cudd_ReadLogicZero(manager)) {
+        printf("Formula does not holds\n");
+    } else {
+        printf("Formula holds\n");
+    }
+}
+
 int main() {
     initBDD();
     initInput();
     DdNode* ctlBDD = convertCTLFormula();
+    checkCTLHolds(ctlBDD);
     dumpBDDasDot(ctlBDD, DOT_FILE_PATH);
     Cudd_Quit(GlobalStorage::getInstance()->ddManager);
     return 0;
