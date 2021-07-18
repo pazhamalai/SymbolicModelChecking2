@@ -11,5 +11,5 @@ include_directories(/home/pazhamalai/CLionProjects/ModelCheckingInputParser)
 find_library(CUDD_LIB libcudd.a /home/pazhamalai/cudd-3.0.0/cudd/.libs)
 target_link_libraries(SymbolicModelChecking2 PUBLIC ${CUDD_LIB})
 
-find_library(INPUT_LIB ModelCheckingInputParser /home/pazhamalai/CLionProjects/ModelCheckingInputParser/cmake-build-debug)
+find_library(INPUT_LIB libModelCheckingInputParser.a /home/pazhamalai/CLionProjects/ModelCheckingInputParser/cmake-build-debug)
 target_link_libraries(SymbolicModelChecking2 LINK_PUBLIC ${INPUT_LIB})

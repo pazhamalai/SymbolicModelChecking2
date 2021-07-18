@@ -9,6 +9,8 @@
 #include "FormulaUtils.h"
 #include "../BDD_Dumper.h"
 
+int GENERATE_WITNESS = 0;
+
 // The variables are declared here so that the tau function will have only one argument Z.
 // And leastFixPoint can be computed with this format in a single place.
 DdNode* EU_F1_BDD;
@@ -78,7 +80,7 @@ DdNode *EUSolver::solveCTL(Formula *formula, int transitionLevel, FormulaToBDDCo
     Cudd_Ref(result);
 
     //Witness Generation
-    if (numberOfFairnessConstraints == 0) {
+    if (numberOfFairnessConstraints == 0 && GENERATE_WITNESS) {
         EU_WitnessGenerator = &witnessGenerator;
         EU_WitnessGenerator->forwardSymbolicSimulation();
     }

@@ -2,3 +2,4 @@ sweet, candy
 (and (sweet) (candy))
 (candy)
 (EX (sweet))
+(sweet), (and (candy) (not (sweet))), (not (candy))
